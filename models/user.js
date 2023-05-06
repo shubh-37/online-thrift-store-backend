@@ -25,4 +25,6 @@ const userSchema = new mongoose.Schema({
         default: false,
         required: [true, "hosteller not mentioned"]
     }
-})
+});
+
+module.exports = userSchema;
