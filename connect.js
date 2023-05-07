@@ -3,7 +3,7 @@ const util = require("util");
 const fs = require("fs")
 const pathLib = require("path");
 const _ = require("lodash");
-const location = pathLib.join(__dirname, "..", "models");
+const location = pathLib.join(__dirname, ".", "models");
 const fsReaddir = util.promisify(fs.readdir);
 
 function beautifiedFileName(fileName){
