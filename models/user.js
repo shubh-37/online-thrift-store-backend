@@ -24,6 +24,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
         required: [true, "hosteller not mentioned"]
+    },
+    password: {
+        type: String,
+        required: [true, "Please provide with a password"],
+        
     }
 });
 
