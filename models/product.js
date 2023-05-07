@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         unique: [true, "Product already exists"],
         required: [true, "Product name required"],
-        maxLength: [15, "Too long"],
+        maxLength: [15, "Too long"]
     },
     prodSize: {
         type: String,
