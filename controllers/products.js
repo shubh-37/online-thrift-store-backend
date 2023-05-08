@@ -47,6 +47,19 @@ function products(app, Models){
             return res.status(500).json({message: error.message});
         }
     });
+    app.get("/prod/:userId", async function getProdByUser(req,res) {
+        const { userId } = req.params;
+        try {
+            const products = await Product.findById(userId);
+            if(products){
+                res.status(200).json({ products });
+            }else{
+                res.status(404).json({message: `Products by ${userId} not found!`});
+            }
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    })
 }
 
 module.exports = products;
