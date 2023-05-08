@@ -1,5 +1,5 @@
 
-function product(app, Models){
+function products(app, Models){
     const { Product } = Models;
     app.post("/createProd", async function createProd(req,res){
         const { prodName, prodSize, quantity, availability, prodPrice } = req.body;
@@ -21,3 +21,5 @@ function product(app, Models){
         }
     });
 }
+
+module.exports = products;
