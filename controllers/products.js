@@ -59,7 +59,21 @@ function products(app, Models){
         } catch (error) {
             res.status(500).json({message: error.message});
         }
-    })
+    });
+    app.put("/update/:prodId", async function updateProd(req, res){
+        const { prodId } = req.params;
+        const { prodName, prodSize, prodPrice, quantity, availability} = req.body;
+        try {
+            const product = await Product.findOneAndUpdate({_id : prodId}, { prodName, prodPrice, prodSize, quantity, availability});
+            if(product) {
+                res.status(200).json({message: "product update successfully", product});
+            }else{
+                res.status(404).json({message: "product not found!"});
+            }
+        } catch (error) {
+            res.status(500).json({message: error.message});
+        }
+    });
 }
 
 module.exports = products;
