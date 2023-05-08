@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const connectDB = require("./connect");
 const AuthController = require("./controllers/auth");
+const ProductController = require("./controllers/products");
 
 //middlewares
 app.use(express.json())
@@ -18,6 +19,7 @@ try {
     async function start(){
         const { Models } = await connectDB();
         AuthController(app, Models);
+        ProductController(app, Models);
         app.listen(3000, console.log("Server listening on port: 3000"));
     }
     start();
