@@ -34,7 +34,19 @@ function products(app, Models){
         } catch (error) {
             return res.status(500).json({message: error.message});
         }
-    })
+    });
+    app.get("/allProd", async function getAllProd(req,res){
+        try {
+            const products = await Product.find({});
+            if(products){
+                return res.status(200).json({ products });
+            }else{
+                return res.status(404).json({message: "products not found"});
+            }
+        } catch (error) {
+            return res.status(500).json({message: error.message});
+        }
+    });
 }
 
 module.exports = products;
