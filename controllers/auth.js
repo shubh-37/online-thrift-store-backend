@@ -19,10 +19,14 @@ function auth(app, Models) {
         hosteller: hosteller,
         password: hashedPassword,
       });
-      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: "24h",
-      });
-      return res.status(201).json({ token: token, emailId: emailId });
+      if(user){
+        const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {
+          expiresIn: "24h",
+        });
+        return res.status(201).json({ token: token, uid: user.uid });
+      }else{
+        return res.status(500).json({ message: "Failed create a user!"});
+      }
     } catch (error) {
         if(error.message.match("E11000 duplicate key error collection:")){
             return res.status(409).json({ message: "Duplicate User" });
@@ -48,7 +52,7 @@ function auth(app, Models) {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
-    return res.status(200).json({ token });
+    return res.status(200).json({ token: token, uid: user.uid });
   }catch(error){
       return res.status(error.statusCode).json({ message: error.message });
   }
