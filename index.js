@@ -7,9 +7,13 @@ const connectDB = require("./connect");
 const AuthController = require("./controllers/auth");
 const ProductController = require("./controllers/products");
 
-//middlewares
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 
+}
+
 app.use(express.json())
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.get("/", (req,res) => {
     res.send("Hello world!")
