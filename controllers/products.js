@@ -64,9 +64,11 @@ function products(app, Models){
         const { prodId } = req.params;
         const { prodName, prodSize, prodPrice, quantity, availability} = req.body;
         try {
-            const product = await Product.findOneAndUpdate({_id : prodId}, { prodName, prodPrice, prodSize, quantity, availability});
+            const product = await Product.findOneAndUpdate({_id : prodId}, { prodName, prodPrice, prodSize, quantity, availability}, {
+                new: true
+            });
             if(product) {
-                res.status(200).json({message: "product update successfully", product});
+                res.status(200).json({message: "product updated successfully", product});
             }else{
                 res.status(404).json({message: "product not found!"});
             }
