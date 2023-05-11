@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     },
     prodSize: {
         type: String,
-        enum: ["XS","S","M","L","XL"],
+        enum: ["XS","S","M","L","XL","15''","13''","17''"],
         default: "S",
         required: [true, "Please provide a size"]
     },
