@@ -50,7 +50,7 @@ function products(app, Models){
     app.get("/prod/:userId", async function getProdByUser(req,res) {
         const { userId } = req.params;
         try {
-            const products = await Product.findById(userId);
+            const products = await Product.find({user: userId});
             if(products){
                 res.status(200).json({ products });
             }else{
