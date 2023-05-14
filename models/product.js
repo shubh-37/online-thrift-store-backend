@@ -19,12 +19,12 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ["Clothing", "Accessories"],
+        enum: ["clothing", "accessories"],
         required: [true, "Please provide a category"]
     },
     condition: {
         type: String,
-        enum: ["Like", "Like New", "Good", "Fair", "Poor"],
+        enum: ["new", "like new", "good", "fair", "poor"],
         required: [true, "Please provide a condition of your product"]
     },
     quantity: {
