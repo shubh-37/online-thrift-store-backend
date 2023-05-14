@@ -38,7 +38,7 @@ function auth(app, Models) {
   app.post("/login", async function login(req, res) {
     const { uid, password } = req.body;
     try{
-    if (!emailId || !password) {
+    if (!uid || !password) {
       throw new userDefinedException("Please enter both uid and password", 401);
     }
     const user = await User.findOne({ uid });
