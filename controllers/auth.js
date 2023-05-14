@@ -8,13 +8,13 @@ function userDefinedException(message, statusCode){
 function auth(app, Models) {
   const { User } = Models;
   app.post("/register", async function register(req, res) {
-    const { uid, phno, hosteller, emailId, password } = req.body;
+    const { uid, phno, hosteller, email, password } = req.body;
     try {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({
         uid: uid,
-        email: emailId,
+        email: email,
         phno: phno,
         hosteller: hosteller,
         password: hashedPassword,
