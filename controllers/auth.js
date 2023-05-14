@@ -23,7 +23,7 @@ function auth(app, Models) {
         const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {
           expiresIn: "24h",
         });
-        return res.status(201).json({ token: token, uid: user.uid });
+        return res.status(201).json({ token: token, uid: user.uid, _id: user._id });
       }else{
         return res.status(500).json({ message: "Failed create a user!"});
       }
@@ -52,7 +52,7 @@ function auth(app, Models) {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
-    return res.status(200).json({ token: token, uid: user.uid });
+    return res.status(200).json({ token: token, uid: user.uid, _id: user._id });
   }catch(error){
       return res.status(error.statusCode).json({ message: error.message });
   }
