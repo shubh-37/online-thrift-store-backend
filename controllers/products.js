@@ -2,7 +2,7 @@
 function products(app, Models){
     const { Product } = Models;
     app.post("/createProd", async function createProd(req,res){
-        const { prodName, prodSize, quantity, availability, prodPrice, user } = req.body;
+        const { prodName, prodSize, quantity, availability,category, condition, prodPrice, user } = req.body;
         try {
             const prod = await Product.create({
                 prodName,
@@ -10,6 +10,8 @@ function products(app, Models){
                 quantity,
                 availability,
                 prodPrice,
+                category,
+                condition,
                 user
             });
             if (prod) {
