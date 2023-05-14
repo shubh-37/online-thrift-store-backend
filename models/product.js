@@ -17,6 +17,16 @@ const productSchema = new mongoose.Schema({
         default: "S",
         required: [true, "Please provide a size"]
     },
+    category: {
+        type: String,
+        enum: ["Clothing", "Accessories"],
+        required: [true, "Please provide a category"]
+    },
+    condition: {
+        type: String,
+        enum: ["Like", "Like New", "Good", "Fair", "Poor"],
+        required: [true, "Please provide a condition of your product"]
+    },
     quantity: {
         type: Number,
         default: 1,
