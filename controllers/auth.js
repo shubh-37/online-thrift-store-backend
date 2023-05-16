@@ -52,7 +52,7 @@ function auth(app, Models) {
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "24h",
     });
-    return res.status(200).json({ token: token, uid: user.uid, _id: user._id });
+    return res.status(200).json({ token: token, uid: user.uid, _id: user._id, email: user.email });
   }catch(error){
       return res.status(error.statusCode).json({ message: error.message });
   }

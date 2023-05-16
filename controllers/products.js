@@ -1,7 +1,8 @@
+const auth = require("../middlewares/authentication");
 
 function products(app, Models){
     const { Product } = Models;
-    app.post("/createProd", async function createProd(req,res){
+    app.post("/products",auth, async function createProd(req,res){
         const { prodName, prodSize, quantity, availability,category, condition, prodPrice, user } = req.body;
         try {
             const prod = await Product.create({
@@ -23,7 +24,7 @@ function products(app, Models){
                 return res.status(500).json({message: error.message})
         }
     });
-    app.delete("/deleteProd/:userId", async function deleteProd(req, res){
+    app.delete("/products",auth, async function deleteProd(req, res){
         const { userId } = req.params;
         const { prodName } = req.body;
         try {
@@ -49,7 +50,7 @@ function products(app, Models){
             return res.status(500).json({message: error.message});
         }
     });
-    app.get("/prod/:userId", async function getProdByUser(req,res) {
+    app.get("/products",auth, async function getProdByUser(req,res) {
         const { userId } = req.params;
         try {
             const products = await Product.find({user: userId});
@@ -62,7 +63,7 @@ function products(app, Models){
             res.status(500).json({message: error.message});
         }
     });
-    app.put("/update/:prodId", async function updateProd(req, res){
+    app.put("/products",auth, async function updateProd(req, res){
         const { prodId } = req.params;
         const { prodName, prodSize, prodPrice, quantity, availability} = req.body;
         try {
