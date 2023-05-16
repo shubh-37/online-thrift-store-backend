@@ -2,7 +2,7 @@ const auth = require("../middlewares/authentication");
 
 function products(app, Models){
     const { Product } = Models;
-    app.post("/products",auth, async function createProd(req,res){
+    app.post("/products", async function createProd(req,res){
         const { prodName, prodSize, quantity, availability,category, condition, prodPrice, user } = req.body;
         try {
             const prod = await Product.create({
