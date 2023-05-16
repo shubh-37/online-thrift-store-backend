@@ -6,7 +6,6 @@ const cors = require("cors");
 const connectDB = require("./connect");
 const AuthController = require("./controllers/auth");
 const ProductController = require("./controllers/products");
-
 const corsOptions = {
     origin: 'http://localhost:3000',
     optionsSuccessStatus: 200 
